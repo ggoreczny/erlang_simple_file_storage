@@ -1,1 +1,0 @@
-erl -name node1@192.168.1.104 -setcookies cookie
