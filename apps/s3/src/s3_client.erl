@@ -133,7 +133,7 @@ store_chunk_on_node({ Key, Node, Data}) ->
 %% -------------------------------------------------------------------
 %% @doc read chunk from the node
 %% -------------------------------------------------------------------
--spec read_chunk_on_node( binary(), atom()) -> binary().
+-spec read_chunk_on_node( binary(), atom()) -> rpc:key().
 read_chunk_on_node( Key, Node ) ->
   Pid = rpc:async_call( Node, s3_chunk_client, read, [Key]),
   io:format("Data has been read: node: ~p, key: ~p, pid: ~p  ~n", [Node, Key, Pid]),
@@ -151,7 +151,7 @@ delete_chunk_on_node(Key, Node) ->
 %% -------------------------------------------------------------------
 %% @doc Read data from async call
 %% -------------------------------------------------------------------
--spec read_data_async( [{binary(), pid()}], [{binary(), binary()}]) -> [{binary(), binary()}].
+-spec read_data_async( [{binary(), rpc:key()}], [{binary(), binary()}]) -> [{binary(), binary()}].
 read_data_async([], Acc) ->
   Acc;
 
